@@ -8,7 +8,9 @@ package ni.edu.uni.programacion.views;
 
 import java.awt.BorderLayout;
 import ni.edu.uni.programacion.controllers.CalculatorController;
+import ni.edu.uni.programacion.controllers.TempController;
 import ni.edu.uni.programacion.views.panels.PnlCalculator;
+import ni.edu.uni.programacion.views.panels.PnlTemp;
 
 /**
  *
@@ -16,6 +18,8 @@ import ni.edu.uni.programacion.views.panels.PnlCalculator;
  */
 public class FrmConversionApp extends javax.swing.JFrame {
     private PnlCalculator pnlCalculator;
+    private PnlTemp pnlTemp;
+    private TempController tempController;
     private CalculatorController calculatorController;
     /** Creates new form FrmConversionApp */
     public FrmConversionApp() {
@@ -54,6 +58,11 @@ public class FrmConversionApp extends javax.swing.JFrame {
         pnlLeftButtons.add(btnCalc);
 
         btnTemp.setText("Temperatura");
+        btnTemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTempActionPerformed(evt);
+            }
+        });
         pnlLeftButtons.add(btnTemp);
 
         btnCurr.setText("Moneda");
@@ -82,6 +91,20 @@ public class FrmConversionApp extends javax.swing.JFrame {
         pnlContent.add(pnlCalculator, BorderLayout.CENTER);
         validate();
     }//GEN-LAST:event_btnCalcActionPerformed
+
+    private void btnTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTempActionPerformed
+        if(pnlTemp == null){
+            pnlTemp = new PnlTemp();
+            tempController = new TempController(pnlTemp);
+        }
+        
+        if(pnlContent.getComponentCount() > 0){
+            pnlContent.remove(0);
+        }
+        
+        pnlContent.add(pnlTemp, BorderLayout.CENTER);
+        validate();
+    }//GEN-LAST:event_btnTempActionPerformed
 
     /**
      * @param args the command line arguments

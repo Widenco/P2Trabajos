@@ -23,6 +23,7 @@ public class CalculatorController implements ActionListener{
     
     private void initComponent(){
         pnlCalculator.getBtnCalc().addActionListener(this);
+        pnlCalculator.getBtnNew().addActionListener(this);
     }
     
     @Override
@@ -32,6 +33,12 @@ public class CalculatorController implements ActionListener{
             n1 = Double.parseDouble(pnlCalculator.getTxtNumber1().getText());
             n2 = Double.parseDouble(pnlCalculator.getTxtNumber2().getText());
             pnlCalculator.getTxtResult().setText(String.valueOf(suma(n1,n2)));
+        }
+        
+        if(e.getActionCommand().equalsIgnoreCase("Nuevo")){
+            pnlCalculator.getTxtNumber1().setText("");
+            pnlCalculator.getTxtNumber2().setText("");
+            pnlCalculator.getTxtResult().setText("");
         }
     }
     
