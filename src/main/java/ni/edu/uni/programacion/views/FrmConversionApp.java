@@ -8,8 +8,10 @@ package ni.edu.uni.programacion.views;
 
 import java.awt.BorderLayout;
 import ni.edu.uni.programacion.controllers.CalculatorController;
+import ni.edu.uni.programacion.controllers.CurrencyController;
 import ni.edu.uni.programacion.controllers.TempController;
 import ni.edu.uni.programacion.views.panels.PnlCalculator;
+import ni.edu.uni.programacion.views.panels.PnlCurrency;
 import ni.edu.uni.programacion.views.panels.PnlTemp;
 
 /**
@@ -19,8 +21,10 @@ import ni.edu.uni.programacion.views.panels.PnlTemp;
 public class FrmConversionApp extends javax.swing.JFrame {
     private PnlCalculator pnlCalculator;
     private PnlTemp pnlTemp;
+    private PnlCurrency pnlCurrency;
     private TempController tempController;
     private CalculatorController calculatorController;
+    private CurrencyController currencyController;
     /** Creates new form FrmConversionApp */
     public FrmConversionApp() {
         initComponents();
@@ -66,6 +70,11 @@ public class FrmConversionApp extends javax.swing.JFrame {
         pnlLeftButtons.add(btnTemp);
 
         btnCurr.setText("Moneda");
+        btnCurr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCurrActionPerformed(evt);
+            }
+        });
         pnlLeftButtons.add(btnCurr);
 
         getContentPane().add(pnlLeftButtons, java.awt.BorderLayout.LINE_START);
@@ -105,6 +114,20 @@ public class FrmConversionApp extends javax.swing.JFrame {
         pnlContent.add(pnlTemp, BorderLayout.CENTER);
         validate();
     }//GEN-LAST:event_btnTempActionPerformed
+
+    private void btnCurrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCurrActionPerformed
+        if(pnlCurrency == null){
+            pnlCurrency = new PnlCurrency();
+            currencyController = new CurrencyController(pnlCurrency);
+        }
+        
+        if(pnlContent.getComponentCount() > 0){
+            pnlContent.remove(0);
+        }
+        
+        pnlContent.add(pnlCurrency, BorderLayout.CENTER);
+        validate();
+    }//GEN-LAST:event_btnCurrActionPerformed
 
     /**
      * @param args the command line arguments
